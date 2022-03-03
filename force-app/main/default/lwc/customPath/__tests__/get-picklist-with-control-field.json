@@ -1,0 +1,157 @@
+{
+  "actions": [
+    {
+      "id": "1496;a",
+      "state": "SUCCESS",
+      "returnValue": {
+        "controllerValues": {
+          "First Grade": 0,
+          "Second Grade": 1,
+          "Third Grade": 2,
+          "Fourth Grade": 3,
+          "Fifth Grade": 4
+        },
+        "defaultValue": {
+          "attributes": null,
+          "label": "First Grade 001",
+          "validFor": [
+            0
+          ],
+          "value": "First Grade"
+        },
+        "eTag": "8f606f2e805bb5211d1b1170176fc894",
+        "url": "/services/data/v54.0/ui-api/object-info/Student__c/picklist-values/012000000000000AAA/Grade__c",
+        "values": [
+          {
+            "attributes": null,
+            "label": "First Grade 001",
+            "validFor": [
+              0
+            ],
+            "value": "First Grade"
+          },
+          {
+            "attributes": null,
+            "label": "Second Grade 002",
+            "validFor": [
+              0,
+              1,
+              2
+            ],
+            "value": "Second Grade"
+          },
+          {
+            "attributes": null,
+            "label": "Third Grade 003",
+            "validFor": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "value": "Third Grade"
+          },
+          {
+            "attributes": null,
+            "label": "Fourth Grade 004",
+            "validFor": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "value": "Fourth Grade"
+          },
+          {
+            "attributes": null,
+            "label": "Fifth Grade 005",
+            "validFor": [
+              3,
+              4
+            ],
+            "value": "Fifth Grade"
+          }
+        ]
+      },
+      "error": []
+    }
+  ],
+  "context": {
+    "mode": "PROD",
+    "app": "one:one",
+    "pathPrefix": "",
+    "fwuid": "GLwpaE1i74371O4RpOURgA",
+    "mlr": 1,
+    "uad": 1,
+    "descriptorUids": {},
+    "loaded": {
+      "APPLICATION@markup://one:one": "czXADpZnHI1twFWVWKqosA"
+    },
+    "globalValueProviders": [
+      {
+        "type": "$Global",
+        "values": {
+          "eswConfigDeveloperName": {
+            "writable": true,
+            "defaultValue": ""
+          },
+          "isVoiceOver": {
+            "writable": true,
+            "defaultValue": false
+          },
+          "setupAppContextId": {
+            "writable": true,
+            "defaultValue": ""
+          },
+          "density": {
+            "writable": true,
+            "value": "VIEW_ONE"
+          },
+          "srcdoc": {
+            "writable": false,
+            "defaultValue": false
+          },
+          "appContextId": {
+            "writable": true,
+            "value": "06m17000000zhbzAAA"
+          },
+          "dynamicTypeSize": {
+            "writable": true,
+            "defaultValue": ""
+          }
+        }
+      }
+    ],
+    "enableAccessChecks": true,
+    "dns": "c",
+    "ls": 1,
+    "lav": "54",
+    "csp": 1,
+    "ch": "https://static.lightning.force.com/cs22",
+    "mna": {
+      "lightning": "interop"
+    },
+    "arse": 1,
+    "acaf": 1,
+    "services": [
+      "markup://force:initServiceSfdc",
+      "markup://lightning:configProvider",
+      "markup://force:salesforceScopedModuleResolver",
+      "markup://force:ldsEngineCreator",
+      "markup://instrumentation:locatorService"
+    ]
+  },
+  "perfSummary": {
+    "version": "core",
+    "request": 16,
+    "actions": {
+      "1496;a": {
+        "total": 7,
+        "db": 0
+      }
+    },
+    "actionsTotal": 7,
+    "overhead": 0
+  }
+}

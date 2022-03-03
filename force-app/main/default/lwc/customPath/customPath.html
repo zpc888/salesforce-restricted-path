@@ -1,0 +1,10 @@
+<template>
+    <lightning-progress-indicator current-step={currentPath} type="path" variant="base">
+        <template for:each={allPaths} for:item="step">
+            <lightning-progress-step label={step.label} value={step.value} key={step.label}
+                                     onstepfocus={handlePathSelected}></lightning-progress-step>
+        </template>
+        <lightning-button variant="brand" label={pathChangeButtonLabel}
+                          onclick={handleSavePath} disabled={pathNotClickable}></lightning-button>
+    </lightning-progress-indicator>
+</template>
