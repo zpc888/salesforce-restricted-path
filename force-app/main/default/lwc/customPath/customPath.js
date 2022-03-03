@@ -30,6 +30,7 @@ export default class CustomPath extends LightningElement {
     @api recordTypeId;                  // master record type   012000000000000AAA
 
     @api picklistPathFieldApiName;      // must be a picklist field and case-sensitive here
+    @api hideButton;                    // whether to hide the button or just to disable the button
 
     @api pathChangeButtonLabel;
 
@@ -77,12 +78,25 @@ export default class CustomPath extends LightningElement {
         return idx;
     }
 
+    renderedCallback() {
+        if (this.hideButton) {
+            this.toggleChangePathButton(this.pathNotClickable);
+        }
+    }
+
     handlePathSelected(event) {
         this.selectedPathIndex = event.detail.index;
         const cpi = this.currentPathIndex;
         this.pathNotClickable = ( cpi == this.selectedPathIndex ||
             (this.allPaths[cpi].allowTo.length > 0 && (!this.allPaths[cpi].allowTo.includes(this.selectedPathIndex)) )
         );
+        if (this.hideButton) {
+            this.toggleChangePathButton(this.pathNotClickable);
+        }
+    }
+
+    toggleChangePathButton(toHide) {
+        this.template.querySelector("lightning-button").style = toHide ? "display: none" : "display: block";
     }
 
     handleSavePath() {
@@ -92,6 +106,9 @@ export default class CustomPath extends LightningElement {
         updateRecord({ fields })
             .then(() => {
                 this.pathNotClickable = true;
+                if (this.hideButton) {
+                    this.toggleChangePathButton(this.pathNotClickable);
+                }
                 this.dispatchEvent(new ShowToastEvent({
                     title: 'Success',
                     message: this.allPaths[this.selectedPathIndex].label + ' Completed',

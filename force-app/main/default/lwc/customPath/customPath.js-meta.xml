@@ -27,6 +27,8 @@
                     description="Please enter change path button label"
                     default="Change"
             />
+            <property label="Hide Button Instead of Disable" name="hideButton" type="Boolean" default="false"
+            />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
