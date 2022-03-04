@@ -34,6 +34,8 @@ export default class CustomPath extends LightningElement {
 
     @api pathChangeButtonLabel;
 
+    @api navigationRule;
+
     @track currentPath;
     @track allPaths = [];
 
@@ -134,6 +136,7 @@ export default class CustomPath extends LightningElement {
     parseAllPathsData(data) {
         const ret = [];
         const controlToMeMap = [];
+        const val2idx = {};
         for (let myIdx = 0; myIdx < data.values.length; myIdx++) {
             const item = data.values[myIdx];
             if (item.validFor) {
@@ -147,6 +150,7 @@ export default class CustomPath extends LightningElement {
                 "value": item.value,
                 "allowTo": []
             })
+            val2idx[item.value] = ret.length - 1;
         }
         for (let ctrIdx = 0; ctrIdx < controlToMeMap.length; ctrIdx ++) {
             // control field and me have the same indexes, labels and values
@@ -155,8 +159,79 @@ export default class CustomPath extends LightningElement {
                 ret[ctrIdx].allowTo = allowedPathIndex;
             }
         }
+        this.mergeWithNavigationRule(val2idx, ret);
         return ret;
     }
 
+    mergeWithNavigationRule(value2Index, paths) {
+        if (this.navigationRule && this.navigationRule.length > 0) {
+            // a={b, c}, b=!{a, d} where a, b are the values of picklist.
+            // This rule says: a can go to b or c; b cannot go to a and d, the rest can go anywhere
+            const fromToList = this.parseNaviRule(this.navigationRule);
+            for (let i = 0; i < fromToList.length; i += 2) {
+                const from = fromToList[i];
+                const toList = fromToList[i + 1];
+                const fromIdx = value2Index[from[0]];   // either 1 or 2 elements, if 2 means !=negative
+                const toListIdx = toList.map(v => value2Index[v]);
+                let toAddList = [];
+                let toRemoveList = [];
+                if (from.length == 2 && from[1] === '!') {
+                    // negative
+                    for (let j = 0; j < paths.length; j++) {
+                        if (!toListIdx.includes(j)) {
+                            toAddList.push(j);
+                        }
+                    }
+                    toAddList.push(fromIdx);
+                    toRemoveList = toListIdx;
+                } else {
+                    // positive
+                    toAddList = [...toListIdx, fromIdx];
+                }
+                const myPath = paths[fromIdx];
+                myPath.allowTo = myPath.allowTo || [];
+                if (myPath.allowTo.length == 0) {
+                    // Otherwise, no point to add because field dependencies will give error at saving time
+                    for (const idx of toAddList) {
+                        if (!myPath.allowTo.includes(idx)) {
+                            myPath.allowTo.push(idx);
+                        }
+                    }
+                } else {
+                    for (const idx of toRemoveList) {
+                        const pos = myPath.allowTo.indexOf(idx);
+                        if (pos !== -1) {
+                            myPath.allowTo.splice(pos, 1);
+                        }
+                    }
+                }
+           }
+        }
+    }
+
+    parseNaviRule( ruleStr ) {
+        const ret = [];
+        const rules = ruleStr.split('}').filter(s => s.length > 0).map(s => s.trim());
+        for (const r of rules) {
+            let [from, toList] = r.split('{').filter(s => s.length > 0).map(s => s.trim());
+            from = from.split(',').filter(s => s.length > 0).map(s => s.trim())[0];
+            from = from.split(';').filter(s => s.length > 0).map(s => s.trim())[0];
+            from = from.split('=').filter(s => s.length > 0).map(s => s.trim());
+            toList = toList.split(',').filter(s => s.length > 0).map(s => s.trim());
+            //	console.log('\tfrom = ', from, '\t\ttoList = ', toList);
+            ret.push( from, toList );
+        }
+        // console.log( ret );
+        return ret;
+    }
+
+    /*
+    parseNaviRule( 'a={b, c}, b=!{a, d}, c={d}' );
+
+    from =  [ 'a' ] 		toList =  [ 'b', 'c' ]
+    from =  [ 'b', '!' ] 	toList =  [ 'a', 'd' ]
+    from =  [ 'c' ] 		toList =  [ 'd' ]
+    [ [ 'a' ], [ 'b', 'c' ], [ 'b', '!' ], [ 'a', 'd' ], [ 'c' ], [ 'd' ] ]
+     */
 
 }
