@@ -163,6 +163,14 @@ export default class CustomPath extends LightningElement {
         return ret;
     }
 
+    resolvePicklistIndexFromValue(value2Index, value) {
+        const ret = value2Index[value];
+        if (ret === undefined) {
+            throw new Error("'" + value + "' is not in {" + Object.keys(value2Index) + "}");
+        }
+        return ret;
+    }
+
     mergeWithNavigationRule(value2Index, paths) {
         if (this.navigationRule && this.navigationRule.length > 0) {
             // a={b, c}, b=!{a, d} where a, b are the values of picklist.
@@ -171,8 +179,8 @@ export default class CustomPath extends LightningElement {
             for (let i = 0; i < fromToList.length; i += 2) {
                 const from = fromToList[i];
                 const toList = fromToList[i + 1];
-                const fromIdx = value2Index[from[0]];   // either 1 or 2 elements, if 2 means !=negative
-                const toListIdx = toList.map(v => value2Index[v]);
+                const fromIdx = this.resolvePicklistIndexFromValue(value2Index, from[0]);   // either 1 or 2 elements, if 2 means !=negative
+                const toListIdx = toList.map(v => this.resolvePicklistIndexFromValue(value2Index, v));
                 let toAddList = [];
                 let toRemoveList = [];
                 if (from.length == 2 && from[1] === '!') {
