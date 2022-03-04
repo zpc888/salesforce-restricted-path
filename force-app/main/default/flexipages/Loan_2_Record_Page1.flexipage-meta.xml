@@ -111,7 +111,6 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>navigationRule</name>
-                    <value>Application=!{Booked, Complete},Adjudication={Application},Acceptance={Adjudication, Document Preparation}, Document Preparation={Acceptance, Signing}, Signing={Document Preparation, Pre-Funding}, Pre-Funding={Signing}, Booked={Pre-Funding}, Complete=!{Adjudication}</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>pathChangeButtonLabel</name>

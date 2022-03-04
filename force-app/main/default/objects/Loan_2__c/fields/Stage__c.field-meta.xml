@@ -8,7 +8,60 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
+        <controllingField>Hidden_Stage__c</controllingField>
         <restricted>true</restricted>
         <valueSetName>Loan_Stage_Enum</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Application</controllingFieldValue>
+            <controllingFieldValue>Adjudication</controllingFieldValue>
+            <controllingFieldValue>Complete</controllingFieldValue>
+            <valueName>Application</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Application</controllingFieldValue>
+            <controllingFieldValue>Adjudication</controllingFieldValue>
+            <controllingFieldValue>Acceptance</controllingFieldValue>
+            <valueName>Adjudication</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Application</controllingFieldValue>
+            <controllingFieldValue>Acceptance</controllingFieldValue>
+            <controllingFieldValue>Document Preparation</controllingFieldValue>
+            <controllingFieldValue>Complete</controllingFieldValue>
+            <valueName>Acceptance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Application</controllingFieldValue>
+            <controllingFieldValue>Acceptance</controllingFieldValue>
+            <controllingFieldValue>Document Preparation</controllingFieldValue>
+            <controllingFieldValue>Signing</controllingFieldValue>
+            <controllingFieldValue>Complete</controllingFieldValue>
+            <valueName>Document Preparation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Application</controllingFieldValue>
+            <controllingFieldValue>Document Preparation</controllingFieldValue>
+            <controllingFieldValue>Signing</controllingFieldValue>
+            <controllingFieldValue>Pre-Funding</controllingFieldValue>
+            <controllingFieldValue>Complete</controllingFieldValue>
+            <valueName>Signing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Application</controllingFieldValue>
+            <controllingFieldValue>Signing</controllingFieldValue>
+            <controllingFieldValue>Pre-Funding</controllingFieldValue>
+            <controllingFieldValue>Booked</controllingFieldValue>
+            <controllingFieldValue>Complete</controllingFieldValue>
+            <valueName>Pre-Funding</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Booked</controllingFieldValue>
+            <controllingFieldValue>Complete</controllingFieldValue>
+            <valueName>Booked</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Complete</controllingFieldValue>
+            <valueName>Complete</valueName>
+        </valueSettings>
     </valueSet>
 </CustomField>
