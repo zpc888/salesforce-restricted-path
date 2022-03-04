@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Application</fullName>
+        <default>false</default>
+        <label>Application</label>
+    </customValue>
+    <customValue>
+        <fullName>Adjudication</fullName>
+        <default>false</default>
+        <label>Adjudication</label>
+    </customValue>
+    <customValue>
+        <fullName>Acceptance</fullName>
+        <default>false</default>
+        <label>Acceptance</label>
+    </customValue>
+    <customValue>
+        <fullName>Document Preparation</fullName>
+        <default>false</default>
+        <label>Document Preparation</label>
+    </customValue>
+    <customValue>
+        <fullName>Signing</fullName>
+        <default>false</default>
+        <label>Signing</label>
+    </customValue>
+    <customValue>
+        <fullName>Pre-Funding</fullName>
+        <default>false</default>
+        <label>Pre-Funding</label>
+    </customValue>
+    <customValue>
+        <fullName>Booked</fullName>
+        <default>false</default>
+        <label>Booked</label>
+    </customValue>
+    <customValue>
+        <fullName>Complete</fullName>
+        <default>false</default>
+        <label>Complete</label>
+    </customValue>
+    <masterLabel>Loan Stage Enum</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
